@@ -1,0 +1,219 @@
+/* ==========================================================================
+   🎨 DESIGN SYSTEM VARIABLE MATRICES (Universal Light & Dark Mode)
+   ========================================================================== */
+
+:root, [data-theme="dark"] {
+  --bg-app: radial-gradient(circle at 50% 50%, #111827 0%, #030712 100%);
+  --bg-card: rgba(17, 24, 39, 0.75);
+  --text-main: #ffffff;
+  --text-sub: #9ca3af;
+  --border-glow: #3b82f6;
+  --card-border: rgba(255, 255, 255, 0.08);
+  --metric-bg: rgba(255, 255, 255, 0.02);
+  --input-bg: rgba(255, 255, 255, 0.03);
+  --input-border: rgba(255, 255, 255, 0.12);
+  --input-color: #ffffff;
+  --shadow-matrix: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="light"] {
+  --bg-app: radial-gradient(circle at 50% 50%, #f1f5f9 0%, #cbd5e1 100%);
+  --bg-card: rgba(255, 255, 255, 0.85);
+  --text-main: #0f172a;
+  --text-sub: #475569;
+  --border-glow: #2563eb;
+  --card-border: rgba(15, 23, 42, 0.08);
+  --metric-bg: rgba(15, 23, 42, 0.03);
+  --input-bg: rgba(15, 23, 42, 0.02);
+  --input-border: rgba(15, 23, 42, 0.15);
+  --input-color: #0f172a;
+  --shadow-matrix: 0 25px 50px -12px rgba(15, 23, 42, 0.15);
+}
+
+/* ==========================================================================
+   Base Layout Settings
+   ========================================================================== */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: var(--bg-app);
+  min-height: 100vh;
+  color: var(--text-main);
+  display: flex;
+  flex-direction: column;
+}
+
+.app-viewport-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: calc(100vh - 74px); /* Accounts for navigation bar depth token offsets */
+  padding: 2rem 1.5rem;
+  box-sizing: border-box;
+}
+
+.premium-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-matrix);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 440px;
+  padding: 3.5rem 2.5rem;
+  box-sizing: border-box;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.premium-input {
+  width: 100%;
+  padding: 0.9rem 1.25rem;
+  border-radius: 12px;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  color: var(--input-color);
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+}
+
+.premium-input:focus {
+  outline: none;
+  border-color: var(--border-glow);
+  background: var(--bg-card);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.25);
+}
+
+.premium-input::placeholder {
+  color: var(--text-sub);
+  opacity: 0.4;
+}
+
+/* ==========================================================================
+   🧭 STICKY NAVIGATION BAR ENGINE (Ensures complete responsiveness)
+   ========================================================================== */
+
+.dashboard-layout-root {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-app);
+  box-sizing: border-box;
+}
+
+.dashboard-top-navbar {
+  position: sticky; /* 📌 Locks bar at the top on scroll actions */
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 2rem;
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--card-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+  z-index: 9999; /* Guarantees layout contents pass beneath the header */
+  height: 74px;
+}
+
+.dashboard-main-content-canvas {
+  flex: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ==========================================================================
+   🎭 MODALS AND OVERLAYS
+   ========================================================================== */
+
+.custom-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(3, 7, 18, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+.modal-compact-box {
+  width: 100%;
+  max-width: 400px;
+  background: var(--bg-card);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  box-sizing: border-box;
+  text-align: center;
+  box-shadow: var(--shadow-matrix);
+}
+
+/* ==========================================================================
+   ⚡ SYSTEM LAYOUT BREAKPOINT ADJUSTMENTS
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .dashboard-top-navbar {
+    padding: 0.85rem 1.5rem;
+  }
+  .dashboard-main-content-canvas {
+    padding: 2rem 1.5rem;
+    gap: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-viewport-wrapper {
+    padding: 1.5rem 1rem;
+    min-height: calc(100vh - 68px);
+  }
+
+  .dashboard-top-navbar {
+    padding: 0.75rem 1rem;
+    height: 68px; /* Squeezes layout heights slightly on phones */
+  }
+
+  .dashboard-main-content-canvas {
+    padding: 1.5rem 1rem;
+    gap: 1.5rem;
+  }
+
+  /* Force metric charts single-row grid mapping */
+  .extended-metrics-grid-style {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .premium-card {
+    max-width: 100%;
+    padding: 2.5rem 1.5rem;
+    border-radius: 20px;
+    background: var(--bg-card); 
+    backdrop-filter: blur(24px);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--shadow-matrix);
+  }
+}
