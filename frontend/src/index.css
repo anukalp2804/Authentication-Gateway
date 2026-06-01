@@ -107,15 +107,15 @@ body {
   box-sizing: border-box;
 }
 
+/* ==========================================================================
+   🧭 STICKY NAVIGATION BAR ENGINE (Fixed Width Center Alignment)
+   ========================================================================== */
+
 .dashboard-top-navbar {
   position: sticky; /* 📌 Locks bar at the top on scroll actions */
   top: 0;
   left: 0;
   right: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.85rem 2rem;
   background: var(--bg-card);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -124,6 +124,34 @@ body {
   box-sizing: border-box;
   z-index: 9999; /* Guarantees layout contents pass beneath the header */
   height: 74px;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem; /* Side padding for the outer background strip */
+}
+
+/* ✨ NEW CONTENT WRAPPER: Centers your profile details and buttons on desktops */
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px; /* 🎯 FIX: Matches your main dashboard body max-width perfectly */
+  margin: 0 auto;    /* 🎯 FIX: Automatically centers the content on desktop monitors */
+  box-sizing: border-box;
+}
+
+/* Mobile Tweak For The Navbar Container */
+@media (max-width: 768px) {
+  .dashboard-top-navbar {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-top-navbar {
+    padding: 0 1rem;
+    height: 68px;
+  }
 }
 
 .dashboard-main-content-canvas {

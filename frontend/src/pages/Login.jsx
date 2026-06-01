@@ -12,12 +12,33 @@ export default function Login() {
   const { loginUser, user, loading } = useAuth();
   const navigate = useNavigate();
 
-  // 🛡️ BROWSER BACK-BUTTON HISTORY GUARD
+  // 🛡️ SECURITY GUARD 1: Pushes authenticated sessions forward to the console workspace
   useEffect(() => {
     if (!loading && user) {
       navigate('/dashboard', { replace: true });
     }
   }, [user, loading, navigate]);
+
+  // 🛡️ SECURITY GUARD 2: THE HISTORY LOCK (Fixes your browser back arrow vulnerability)
+  useEffect(() => {
+    // 1. Push a dummy state into the history stack to capture the immediate view
+    window.history.pushState(null, document.title, window.location.href);
+    
+    const handleBackButtonOverride = (event) => {
+      // 2. Prevent the browser's native backward travel movement
+      event.preventDefault();
+      // 3. Force the history line back onto the login portal location string
+      window.history.pushState(null, document.title, window.location.href);
+    };
+
+    // 4. Attach an active event listener to listen for browser Back/Forward arrow clicks
+    window.addEventListener('popstate', handleBackButtonOverride);
+
+    // 5. Cleanup listener when the component unmounts (e.g., when they successfully click register or login)
+    return () => {
+      window.removeEventListener('popstate', handleBackButtonOverride);
+    };
+  }, []);
 
   const handleSubmit = async (e) => {
     if (e) e.preventDefault();
@@ -36,7 +57,7 @@ export default function Login() {
       setIsLoggingIn(false); 
     }
   };
-
+  
   return (
     <div className="app-viewport-wrapper">
       <div className="premium-card">

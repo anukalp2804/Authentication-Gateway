@@ -72,24 +72,29 @@ export default function Dashboard() {
   return (
     <div className="dashboard-layout-root">
       
-      {/* 🧭 NAVIGATION HEADER BAR */}
+      {/* 🧭 LOCKED STICKY CONTROLLER HEAD NAVBAR ROW */}
       <nav className="dashboard-top-navbar">
-        <div style={styles.navBrandBlock}>
-          <div style={styles.avatarBubble}>
-            {user?.firstName ? user.firstName.charAt(0).toUpperCase() : 'A'}
+        {/* ✅ THE FIX: Wrapper container constraints alignment to stop edge-stretching */}
+        <div className="nav-container">
+          
+          <div style={styles.navBrandBlock}>
+            <div style={styles.avatarBubble}>
+              {user?.firstName ? user.firstName.charAt(0).toUpperCase() : 'A'}
+            </div>
+            <span style={styles.welcomeText}>
+              Hi, <strong style={{ color: 'var(--text-main)' }}>{user?.firstName || 'Anukalp'}</strong>
+            </span>
           </div>
-          <span style={styles.welcomeText}>
-            Welcome, <strong style={{ color: 'var(--text-main)' }}>{user?.firstName || 'User'}</strong>
-          </span>
-        </div>
 
-        <div style={styles.navActionsHub}>
-          <button type="button" onClick={toggleTheme} style={styles.pillControl}>
-            {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
-          </button>
-          <button type="button" onClick={() => setShowLogoutModal(true)} style={styles.navDisconnectBtn}>
-            Disconnect
-          </button>
+          <div style={styles.navActionsHub}>
+            <button type="button" onClick={toggleTheme} style={styles.pillControl}>
+              {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
+            </button>
+            <button type="button" onClick={() => setShowLogoutModal(true)} style={styles.navDisconnectBtn}>
+              Disconnect
+            </button>
+          </div>
+
         </div>
       </nav>
 
