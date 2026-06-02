@@ -44,7 +44,7 @@ export default function Register() {
       <div className="premium-card">
         <div style={styles.header}>
           <h2 style={{ ...styles.title, color: 'var(--text-main)' }}>Create Account</h2>
-          <p style={{ ...styles.subtitle, color: 'var(--text-sub)' }}>Configure your data records to generate a secure authentication token.</p>
+          <p style={{ ...styles.subtitle, color: 'var(--text-sub)' }}>Enter your data records to create a account.</p>
         </div>
 
         {error && <div style={styles.errorContainer}>⚠️ {error}</div>}
@@ -67,7 +67,7 @@ export default function Register() {
           </div>
 
           <div style={styles.inputGroup}>
-            <label style={{ ...styles.label, color: 'var(--text-sub)' }}>Access Password</label>
+            <label style={{ ...styles.label, color: 'var(--text-sub)' }}>Password</label>
             <div style={{ position: 'relative', width: '100%' }}>
               <input 
                 type={showPassword ? "text" : "password"} 

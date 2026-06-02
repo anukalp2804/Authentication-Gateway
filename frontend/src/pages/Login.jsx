@@ -63,7 +63,7 @@ export default function Login() {
       <div className="premium-card">
         <div style={styles.header}>
           <h2 style={{ ...styles.title, color: 'var(--text-main)' }}>Welcome Back</h2>
-          <p style={{ ...styles.subtitle, color: 'var(--text-sub)' }}>Please authenticate your credentials to access your console.</p>
+          <p style={{ ...styles.subtitle, color: 'var(--text-sub)' }}>Please authenticate your credentials to access your account.</p>
         </div>
         
         {error && <div style={styles.errorContainer}>⚠️ {error}</div>}
