@@ -46,6 +46,7 @@ A lightweight, multi-device responsive full-stack authentication gateway enginee
    npm run dev
    ```
 ## Screenshot
-
+1. Register
 ![App Screenshot](Screensort/register.png)
+2. Login
 ![App Screenshot](Screensort/login.png)
